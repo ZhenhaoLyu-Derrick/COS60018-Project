@@ -16,7 +16,7 @@ def show_main_menu():
     print("1. Convert Ingredient Volume to Weight (Cups to Grams)")
     print("2. Convert Ingredient Weight to Volume (Grams to Cups)")
     print("3. Convert Oven Temperature")
-    print("4. Convert Liquid (Ounces to Milliliters)")
+    print("4. Convert Liquid (Ounces to Milliliters or vice versa)")
     print("5. Exit Program")
 
 def show_ingredients():
@@ -105,15 +105,31 @@ def start_converter():
             else:
                 print("\nERROR: Invalid selection.")
         elif user_choice == "4":
-            oz_input = input("\nEnter fluid ounces: ")
-            check_number = oz_input.replace(".", "").replace("-", "")
+            print("\nLiquid Conversion Options: ")
+            print("A. Fluid Ounces to Milliliters")
+            print("B. Milliliters to Fluid Ounces")
+            liquid_choice = input("Choose A or B: ")
 
-            if check_number.isdigit():
-                oz = float(oz_input)
-                milliliters = oz * 29.5735
-                print("\nRESULT: " + str(oz) + " fluid ounces is approximately " + str(milliliters) + " milliliters.")
-            else:
-                print("\nERROR: Please enter a valid number.")
+            if liquid_choice == "A" or liquid_choice == "a":
+                oz_input = input("\nEnter fluid ounces: ")
+                check_oz_number = oz_input.replace(".", "").replace("-", "")
+
+                if check_oz_number.isdigit():
+                    oz = float(oz_input)
+                    milliliters = oz * 29.5735
+                    print("\nRESULT: " + str(oz) + " fluid ounces is approximately " + str(milliliters) + " milliliters.")
+                else:
+                    print("\nERROR: Please enter a valid number.")
+            elif liquid_choice == "B" or liquid_choice == "b":
+                ml_input = input("\nEnter milliliters: ")
+                check_ml_number = ml_input.replace(".", "").replace("-", "")
+
+                if check_ml_number.isdigit():
+                    ml = float(ml_input)
+                    fluid_ounces = ml / 29.5735
+                    print("\nRESULT: " + str(ml) + " milliliters is approximately " + str(fluid_ounces) + " fluid ounces.")
+                else:
+                    print("\nERROR: Please enter a valid number.")
         elif user_choice == "5":
             print("\nThank you for using the Baking Converter. Goodbye!")
             program_running = False 
